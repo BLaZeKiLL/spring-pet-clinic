@@ -6,7 +6,6 @@ description = 'spring-pet-clinic'
 // Apply setting to all projects
 allprojects {
     group = 'org.blazekill'
-    version = '0.0.1'
 
     repositories {
         mavenCentral()
