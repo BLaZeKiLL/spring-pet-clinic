@@ -2,9 +2,11 @@ package org.blazekill.springpetclinic.services.map;
 
 import org.blazekill.springpetclinic.model.Pet;
 import org.blazekill.springpetclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PetMapService extends AbstractMapService<Pet, Long> implements PetService {
 
     @Override

@@ -4,8 +4,7 @@ import org.blazekill.springpetclinic.model.Owner;
 import org.blazekill.springpetclinic.model.Vet;
 import org.blazekill.springpetclinic.services.OwnerService;
 import org.blazekill.springpetclinic.services.VetService;
-import org.blazekill.springpetclinic.services.map.OwnerMapService;
-import org.blazekill.springpetclinic.services.map.VetMapService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +14,10 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    /**
-     * #TODO use DI to inject services
-     */
-    public DataLoader() {
-        ownerService = new OwnerMapService();
-        vetService = new VetMapService();
+    @Autowired
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override
