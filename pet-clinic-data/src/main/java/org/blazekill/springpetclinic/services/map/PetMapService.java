@@ -1,11 +1,11 @@
 package org.blazekill.springpetclinic.services.map;
 
 import org.blazekill.springpetclinic.model.Pet;
-import org.blazekill.springpetclinic.services.CrudService;
+import org.blazekill.springpetclinic.services.PetService;
 
 import java.util.Set;
 
-public class PetMapService extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+public class PetMapService extends AbstractMapService<Pet, Long> implements PetService {
 
     @Override
     public Set<Pet> findAll() {
