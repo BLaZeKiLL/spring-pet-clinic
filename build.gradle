@@ -1,12 +1,11 @@
-description = 'spring-pet-clinic'
-
-// Applying the java plugin at top level creates 2 source sets at top level
-// main and test hence better to apply plugin at module level which means
-// sourceCompatibility must be set on module level
 // Apply setting to all projects
 allprojects {
     group = 'org.blazekill'
+}
 
+subprojects {
+    apply plugin: 'java'
+    sourceCompatibility = '11'
     repositories {
         mavenCentral()
     }
