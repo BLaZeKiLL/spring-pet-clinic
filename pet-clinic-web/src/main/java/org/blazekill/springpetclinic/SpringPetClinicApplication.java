@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringPetClinicApplication {
 
-    public static final Logger logger = LoggerFactory.getLogger(SpringPetClinicApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(SpringPetClinicApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(SpringPetClinicApplication.class, args);

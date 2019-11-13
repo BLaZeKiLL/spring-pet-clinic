@@ -4,12 +4,16 @@ import org.blazekill.springpetclinic.model.Owner;
 import org.blazekill.springpetclinic.model.Vet;
 import org.blazekill.springpetclinic.services.OwnerService;
 import org.blazekill.springpetclinic.services.VetService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DataLoader implements CommandLineRunner {
+
+    private static final Logger logger = LoggerFactory.getLogger(DataLoader.class);
 
     private final OwnerService ownerService;
     private final VetService vetService;
@@ -36,7 +40,7 @@ public class DataLoader implements CommandLineRunner {
 
         ownerService.save(owner2);
 
-        System.out.println("Loaded Owners...");
+        logger.info("Loaded Owners...");
 
         Vet vet1 = new Vet();
         vet1.setId(1L);
@@ -52,7 +56,7 @@ public class DataLoader implements CommandLineRunner {
 
         vetService.save(vet2);
 
-        System.out.println("Loaded Vets...");
+        logger.info("Loaded Vets...");
     }
 
 }
