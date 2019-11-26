@@ -1,6 +1,14 @@
+buildscript {
+    dependencies {
+        classpath 'ro.isdc.wro4j.gradle:wro4j-gradle-plugin:1.8.0.Beta4'
+    }
+}
+
 plugins {
     id 'net.researchgate.release' version '2.8.1'
 }
+
+apply plugin: 'wro4j'
 
 configurations {
     developmentOnly
@@ -12,12 +20,44 @@ configurations {
     }
 }
 
+def versionJQuery = '3.4.1'
+def versionBootstrap = '3.4.1'
+
+
+webResources {
+//    bundle ('core') {
+//        js 'js/**/*.js'
+//        preProcessor 'jsMin'
+//    }
+//
+//    bundle ('libs') {
+//        js "webjars/jquery/$versionJQuery/jquery.min.js"
+//    }
+
+    bundle ('petclinic') {
+        css "webjars/bootstrap/$versionBootstrap/less/bootstrap.less"
+        css "$projectDir/src/main/less/*.less"
+//        cssOverrideImport 'variables.less', '../../../../themes/default/variables.less'
+        preProcessor 'lessCssImport'
+        postProcessor 'less4j'
+    }
+
+//    assets {
+//        include 'themes/default/images/**'
+//    }
+}
+
 dependencies {
     implementation project(':pet-clinic-data')
 
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    webjars "org.webjars:jquery:$versionJQuery"
+    webjars "org.webjars:bootstrap:$versionBootstrap"
+    webjars 'org.webjars:jquery-ui:1.12.1'
+    webjars 'org.webjars:webjars-locator-core:0.43'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
