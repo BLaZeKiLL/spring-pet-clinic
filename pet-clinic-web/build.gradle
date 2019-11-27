@@ -22,29 +22,29 @@ configurations {
 
 def versionJQuery = '3.4.1'
 def versionBootstrap = '3.4.1'
-
+def versionJQueryUI = '1.12.1'
 
 webResources {
-//    bundle ('core') {
-//        js 'js/**/*.js'
-//        preProcessor 'jsMin'
-//    }
-//
-//    bundle ('libs') {
-//        js "webjars/jquery/$versionJQuery/jquery.min.js"
-//    }
+    bundle ('core') {
+        js 'js/**/*.js'
+        preProcessor 'jsMin'
+    }
+
+    bundle ('libs') {
+        js "webjars/jquery/$versionJQuery/jquery.min.js"
+        js "webjars/jquery-ui/$versionJQueryUI/jquery-ui.min.js"
+        js "webjars/bootstrap/$versionBootstrap/js/bootstrap.min.js"
+    }
 
     bundle ('petclinic') {
         css "webjars/bootstrap/$versionBootstrap/less/bootstrap.less"
-        css "$projectDir/src/main/less/*.less"
-//        cssOverrideImport 'variables.less', '../../../../themes/default/variables.less'
+
+        css "less/petclinic.less"
+
         preProcessor 'lessCssImport'
         postProcessor 'less4j'
+        cssRewriteUrl()
     }
-
-//    assets {
-//        include 'themes/default/images/**'
-//    }
 }
 
 dependencies {
@@ -53,11 +53,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.webjars:webjars-locator-core'
 
     webjars "org.webjars:jquery:$versionJQuery"
-    webjars "org.webjars:bootstrap:$versionBootstrap"
-    webjars 'org.webjars:jquery-ui:1.12.1'
-    webjars 'org.webjars:webjars-locator-core:0.43'
+    webjars "org.webjars:jquery-ui:$versionJQueryUI"
+    webjarsRuntime ("org.webjars:bootstrap:$versionBootstrap") {
+        transitive = false
+    }
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
