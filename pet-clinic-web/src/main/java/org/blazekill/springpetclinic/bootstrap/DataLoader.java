@@ -1,6 +1,7 @@
 package org.blazekill.springpetclinic.bootstrap;
 
 import org.blazekill.springpetclinic.model.Owner;
+import org.blazekill.springpetclinic.model.Pet;
 import org.blazekill.springpetclinic.model.PetType;
 import org.blazekill.springpetclinic.model.Vet;
 import org.blazekill.springpetclinic.services.OwnerService;
@@ -11,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -35,21 +38,40 @@ public class DataLoader implements CommandLineRunner {
         dog.setName("Dog");
         PetType savedDogPetType = petTypeService.save(dog);
 
-        PetType cat = new PetType();
-        cat.setName("Cat");
-        PetType savedCatPetType = petTypeService.save(cat);
+        PetType chick = new PetType();
+        chick.setName("Chick");
+        PetType savedCatPetType = petTypeService.save(chick);
 
         logger.info("Loaded PetTypes...");
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Devashish");
         owner1.setLastName("Lal");
+        owner1.setAddress("7514 Atlantic Drive, Hastings, MN 55033");
+        owner1.setCity("Palo Alto");
+        owner1.setTelephone("321456957");
 
+        Pet dogga = new Pet();
+        dogga.setPetType(dog);
+        dogga.setName("Dogga");
+        dogga.setOwner(owner1);
+        dogga.setBrithDate(LocalDate.now());
+
+        owner1.getPets().add(dogga);
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Ashna");
         owner2.setLastName("Kumar");
+        owner2.setAddress("175 West Ocean Drive, Montgomery, AL 36109");
+        owner2.setCity("Alabama");
+        owner2.setTelephone("648951267");
+
+        Pet chuza = new Pet();
+        chuza.setPetType(chick);
+        chuza.setName("Chuza");
+        chuza.setOwner(owner2);
+        chuza.setBrithDate(LocalDate.now());
 
         ownerService.save(owner2);
 
